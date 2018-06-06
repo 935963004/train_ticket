@@ -22,10 +22,16 @@ int main()
 			printf("%d\n", tmp.regist());
 		else if (equal(op, "login"))
 			printf("%d\n", tmp.login());
-		else if (equal(op, "query_profile"))
-			printf("%s\n", tmp.query_profile());
-		else if (equal(op, "modify_profile"))
-			printf("%d\n", tmp.modify_profile());
+		else if (equal(op, "query_profile")) {
+			int x;
+			scanf("%d", &x);
+			printf("%s\n", tmp.query_profile(x));
+		}
+		else if (equal(op, "modify_profile")) {
+			int id1, id2, pri;
+            		scanf("%d%d%d", &id1, &id2, &pri);
+			printf("%d\n", tmp.modify_profile(id1, id2, pri));
+		}
 		else if (equal(op, "modify_privilege"))
 			printf("%d\n", tmp.modify_privilege());
 		else if (equal(op, "add_train"))
