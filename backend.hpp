@@ -78,11 +78,8 @@ public:
 		return 1;
 	}
 
-	char* query_profile(char *s = nullptr)
+	char* query_profile(int userID)
 	{
-		scanner Scanner;
-		Scanner.set(s);
-		int userID = Scanner.geti();
 		auto tmp = userDB.find(userID);
 		char *ret;
 		if (!tmp.second) {
@@ -128,11 +125,8 @@ public:
 		return 1;
 	}
 
-	int modify_privilege(char *s = nullptr)
+	int modify_privilege(int ID1, int ID2, int pri)
 	{
-		scanner Scanner;
-		Scanner.set(s);
-		int ID1 = Scanner.geti(), ID2 = Scanner.geti(), pri = Scanner.geti();
 		auto tmp1 = userDB.find(ID1), tmp2 = userDB.find(ID2);
 		if (!tmp1.second) {
 			if (tmp2.second)
