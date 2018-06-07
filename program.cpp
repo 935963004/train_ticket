@@ -13,13 +13,11 @@ bool equal(const char *a, const char *b)
 }
 int main()
 {
-	freopen("5.in", "r", stdin);
 	backend tmp;
 	tmp.init();
 	char op[50];
 	while (true) {
-		//scanf("%s", op);
-		cin >> op;
+		scanf("%s", op);
 		char *s;
 		if (equal(op, "register"))
 			printf("%d\n", tmp.regist());
