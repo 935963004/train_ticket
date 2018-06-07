@@ -261,7 +261,7 @@ public:
 			str += ' ';
 			str += (string)tmp.first->sta[i].timeStopover;
 			for (int j = 0; j < tmp.first->priceNum; ++j) {
-				str += " $";
+				str += " ￥";
 				str += to_string(tmp.first->sta[i].price[j]);
 			}
 		}
