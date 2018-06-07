@@ -49,7 +49,7 @@ public:
 	{
 		if (buffer == nullptr) {
 			int tmp;
-			scanf("%d", &tmp);
+			cin >> tmp;
 			return tmp;
 		}
 		while (buffer[0] == ' ' || buffer[0] == '\n')
