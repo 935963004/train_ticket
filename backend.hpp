@@ -118,6 +118,7 @@ public:
 		auto tmp = userDB.find(user.id);
 		if (!tmp.second)
 			return 0;
+		user.privilege = tmp.first->privilege;
 		userDB.modify(user.id, user);
 		delete tmp.first;
 		return 1;
