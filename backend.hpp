@@ -1,5 +1,5 @@
-#ifndef SHELL_HPP
-#define SHELL_HPP
+#ifndef BACKEND_HPP
+#define BACKEND_HPP
 #include <iostream>
 #include "User.hpp"
 #include "Ticket.hpp"
