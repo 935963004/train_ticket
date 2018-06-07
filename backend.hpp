@@ -116,7 +116,7 @@ public:
 		user.email = Scanner.gets();
 		user.phone = Scanner.gets();
 		auto tmp = userDB.find(user.id);
-		if (!tmp.second || tmp.first->password != user.password) {
+		if (!tmp.second) {
 			delete tmp.first;
 			return 0;
 		}
