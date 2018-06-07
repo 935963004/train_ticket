@@ -1,1 +1,1 @@
-g++ program.cpp -o code -std=c++11 -l sqlite3
+g++ -o code program.cpp -std=c++11 -O2
