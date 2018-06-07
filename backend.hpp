@@ -116,10 +116,8 @@ public:
 		user.email = Scanner.gets();
 		user.phone = Scanner.gets();
 		auto tmp = userDB.find(user.id);
-		if (!tmp.second) {
-			delete tmp.first;
+		if (!tmp.second)
 			return 0;
-		}
 		userDB.modify(user.id, user);
 		delete tmp.first;
 		return 1;
