@@ -317,7 +317,6 @@ public:
 		train.priceNum = Scanner.geti();
 		for (int i = 0; i < train.priceNum; ++i)
 			train.priceName[i] = Scanner.gets();
-		bool flag = false;
 		for (int i = 0; i < train.stationNum; ++i) {
 			train.sta[i].name = Scanner.gets();
 			train.sta[i].timeArrive = Scanner.gets();
