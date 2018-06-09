@@ -4,9 +4,10 @@
 #include "backend.hpp"
 bool equal(const char *a, const char *b)
 {
-	if (strlen(a) != strlen(b))
+	int len = strlen(a);
+	if (len != strlen(b))
 		return false;
-	for (int i = 0; i < strlen(a); ++i)
+	for (int i = 0; i < len; ++i)
 		if (a[i] != b[i])
 			return false;
 	return true;
