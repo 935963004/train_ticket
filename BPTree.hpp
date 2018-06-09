@@ -6,7 +6,6 @@
 #include "queue.h"
 #include <assert.h>
 #include "vector.hpp"
-//#include "dbException.hpp"
 #define IOB std::ios_base::in | std::ios_base::out | std::ios_base::binary
 #define TIOB std::ios_base::trunc | std::ios_base::in | std::ios_base::out | std::ios_base::binary
 #define OFFSET_TYPE unsigned long long
@@ -88,13 +87,19 @@ private:
 	}
 
 	inline OFFSET_TYPE binSearch(const BPTNode *p, const Key &k) {
-		OFFSET_TYPE lo = 0, hi = p->sz - 1, mid = 0;
-		while (hi != lo) {
-			mid = (lo + hi + 1) >> 1;
-			if (keyCompare(k, p->data[mid].k) == 1) hi = mid - 1;
-			else lo = mid;
+		OFFSET_TYPE lo = 0, hi = p->sz - 1, mid = 0, ans = 0;
+		while (hi >= lo) {
+			mid = (lo + hi) >> 1;
+			if (keyCompare(k, p->data[mid].k) == 1) {
+				hi = mid - 1;
+				if (hi == -1) return ans;
+			}
+			else {
+				ans = mid;
+				lo = mid + 1;
+			}
 		}
-		return lo;
+		return ans;
 	}
 
 	inline OFFSET_TYPE binSearchForRange(const BPTNode *p, const Key &k) {
@@ -171,7 +176,7 @@ private:
 		char tmp[MAX_FILENAME_LEN];
 		OFFSET_TYPE offset = 0;
 		fidx.read(tmp, sizeof(char) * MAX_FILENAME_LEN);
-		//if (strcmp(idxFileName, tmp) != 0) throw fileNotMatch();
+		//if(strcmp(idxFileName, tmp) != 0) throw fileNotMatch();
 		strcpy(idxFileName, tmp);
 		fidx.read(dbFileName, sizeof(char) * MAX_FILENAME_LEN);
 		fidx.read((char*)&dataSize, sizeof(OFFSET_TYPE));
@@ -309,7 +314,7 @@ private:
 		if (fidx.is_open()) fidx.close();
 		fidx.open(idxFileName, IOB);
 		if (!fidx) {
-			//if (dl == 0) throw ImportFileNotExist();
+			//if(dl == 0) throw ImportFileNotExist();
 			if (currentNode) delete currentNode;
 			fidx.close();
 			//create new file if index not exist
@@ -795,7 +800,7 @@ private:
 			pos = binSearchForRange(st, kl);
 			while (1) {
 				for (;pos < st->sz && keyCompare(st->data[pos].k, kr) != 0;++pos) vec.push_back(st->data[pos].k);
-				if (keyCompare(st->data[pos].k, kr) != 0 && st->nextNode != (OFFSET_TYPE)(-1)) {
+				if ((keyCompare(st->data[pos].k, kr) != 0 || pos == st->sz) && st->nextNode != (OFFSET_TYPE)(-1)) {
 					tmpn = readNode(st->nextNode);
 					delete st;
 					st = tmpn;
@@ -845,7 +850,7 @@ private:
 					delete dtaptr;
 					dtaptr = nullptr;
 				}
-				if (keyCompare(st->data[pos].k, kr) != 0 && st->nextNode != (OFFSET_TYPE)(-1)) {
+				if ((keyCompare(st->data[pos].k, kr) != 0 || pos == st->sz) && st->nextNode != (OFFSET_TYPE)(-1)) {
 					tmpn = readNode(st->nextNode);
 					delete st;
 					st = tmpn;
