@@ -49,10 +49,6 @@ int main()
 		else if (equal(op, "query_ticket")) {
 			s = tmp.query_ticket();
 			printf("%s\n", s);
-			/*int len = strlen(s);
-			for (int i = 0; i < len; ++i)
-				printf("%c", s[i]);
-			printf("\n");*/
 			delete[]s;
 		}
 		else if (equal(op, "buy_ticket"))
