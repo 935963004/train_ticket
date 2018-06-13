@@ -188,7 +188,7 @@ namespace sjtu
 				return !(ptr == rhs.ptr && index == rhs.index);
 			}
 		};
-		vector(int initSize = 1000)
+		vector(int initSize = 500)
 		{
 			data = new T[initSize];
 			maxSize = initSize;
