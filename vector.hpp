@@ -211,7 +211,7 @@ namespace sjtu
 		{
 			
 			if (this == &other)
-				return *tihs;
+				return *this;
 			if (data)
 				clear();
 			data = new T[other.size()];
